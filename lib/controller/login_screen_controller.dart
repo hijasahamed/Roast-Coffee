@@ -1,20 +1,27 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:roast_coffee/view/widgets/common_widgets/snackbar_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+    
+    
 
 class LoginProvider extends ChangeNotifier {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController(); 
+  final TextEditingController passwordController = TextEditingController(); 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool _isLoading = false;
-  String? _errorMessage;
-
   bool get isLoading => _isLoading;
-  String? get errorMessage => _errorMessage;
 
-  Future<void> login() async {
-    final String url = "https://mt.diodeinfosolutions.com/api/login";
+  Future<void> login(context) async {
+    if (!formKey.currentState!.validate()) {
+      return;
+    }
+
+    final String url = dotenv.env['LOGIN_API'].toString();
     final Map<String, String> headers = {"Content-Type": "application/json"};
 
     final Map<String, String> body = {
@@ -24,7 +31,6 @@ class LoginProvider extends ChangeNotifier {
 
     try {
       _isLoading = true;
-      _errorMessage = null;
       notifyListeners();
 
       final response = await http.post(
@@ -33,31 +39,32 @@ class LoginProvider extends ChangeNotifier {
         body: jsonEncode(body),
       );
 
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
+      final responseData = jsonDecode(response.body);
 
+      if (response.statusCode == 200) {
         if (responseData['success'] == true) {
-          // Login successful - Handle token or session
-          debugPrint("Login successful: ${responseData['token']}");
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString("auth_token", responseData['token'] ?? "");
+
+          // Show success message
+          snackbarWidget('Login Successfull', context, Colors.green);
+
+          // Navigate to Home Screen
+          // Navigator.pushReplacementNamed(context, "/home");
         } else {
           // API responded but login failed
-          _errorMessage = responseData['message'] ?? "Login failed";
+          snackbarWidget('Login Failed', context, Colors.red);
         }
       } else {
         // Server error
-        _errorMessage = "Server error: ${response.statusCode}";
+        snackbarWidget("Server error: ${response.statusCode}", context, Colors.red);
       }
     } catch (e) {
-      _errorMessage = "Something went wrong: $e";
+      snackbarWidget("Something went wrong: $e", context, Colors.red);
     } finally {
       _isLoading = false;
       notifyListeners();
     }
-  }
-
-  void clearError() {
-    _errorMessage = null;
-    notifyListeners();
   }
 
   @override

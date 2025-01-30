@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/login_screen_controller.dart';
 import 'package:roast_coffee/controller/splash_screen_controller.dart';
 import 'package:roast_coffee/view/screens/splash_screen.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: '.env');
   runApp(
     MultiProvider(
       providers: [
@@ -26,8 +28,7 @@ class RoastCoffeeApp extends StatelessWidget {
       title: 'Roast Coffee',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
-        useMaterial3: true,
+        primarySwatch: Colors.deepPurple,
       ),
       home: SplashScreen(screenSize: screenSize,),
     );

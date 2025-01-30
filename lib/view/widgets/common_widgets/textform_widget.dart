@@ -21,7 +21,9 @@ class CustomTextField extends StatelessWidget {
         ),
         SizedBox(height: 8),
         TextFormField(
-          textCapitalization: TextCapitalization.words,
+          cursorColor: Colors.white,
+          validator: (value) =>
+          value!.isEmpty ? "Data cannot be empty" : null,
           style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
             suffixIcon: isPasswordField==true? Icon(Icons.visibility,color: Colors.white,) : null,
@@ -37,6 +39,14 @@ class CustomTextField extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: Colors.blue, width: 1.5),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.white, width: 1.5),
+            ),
+            errorStyle: TextStyle(
+              fontWeight: FontWeight.w400,
+              color: Colors.red,
             ),
           ),
         ),
