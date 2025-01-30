@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:roast_coffee/controller/login_screen_controller.dart';
+import 'package:roast_coffee/controller/splash_screen_controller.dart';
 import 'package:roast_coffee/view/screens/splash_screen.dart';
 
 void main() {
-  runApp(const RoastCoffeeApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SplashProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ],
+      child: const RoastCoffeeApp(),
+    ),
+  );
 }
 
 class RoastCoffeeApp extends StatelessWidget {
@@ -15,7 +26,7 @@ class RoastCoffeeApp extends StatelessWidget {
       title: 'Roast Coffee',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
         useMaterial3: true,
       ),
       home: SplashScreen(screenSize: screenSize,),

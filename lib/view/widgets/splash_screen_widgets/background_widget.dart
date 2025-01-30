@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:roast_coffee/view/screens/splash_screen.dart';
 
 class BackgroundWidget extends StatelessWidget {
   const BackgroundWidget({
     super.key,
-    required this.widget,
+    required this.screenSize,
   });
 
-  final SplashScreen widget;
+  final Size screenSize;
 
   @override
   Widget build(BuildContext context) {
     return Image.asset(
       'assets/images/splash screen.png',
       fit: BoxFit.cover,
-      width: widget.screenSize.width,
-      height: widget.screenSize.height,
+      width: screenSize.width,
+      height: screenSize.height,
     );
   }
 }

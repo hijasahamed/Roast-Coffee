@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:roast_coffee/view/screens/splash_screen.dart';
 
 class LogoWidget extends StatelessWidget {
   const LogoWidget({
     super.key,
-    required this.widget,
+    required this.screenSize,
   });
 
-  final SplashScreen widget;
+  final Size screenSize;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +14,8 @@ class LogoWidget extends StatelessWidget {
       child: Image.asset(
         'assets/images/splash icon.png',
         fit: BoxFit.fill,
-        width: widget.screenSize.width/2,
-        height: widget.screenSize.width/4,
+        width: screenSize.width/2,
+        height: screenSize.width/4,
       ),
     );
   }
