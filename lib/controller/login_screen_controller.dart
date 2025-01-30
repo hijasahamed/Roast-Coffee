@@ -21,7 +21,8 @@ class LoginProvider extends ChangeNotifier {
       return;
     }
 
-    final String url = dotenv.env['LOGIN_API'].toString();
+    // final String url = dotenv.env['LOGIN_API'].toString();
+    final String url = 'https://mt.diodeinfosolutions.com/api/login';
     final Map<String, String> headers = {"Content-Type": "application/json"};
 
     final Map<String, String> body = {
@@ -44,8 +45,8 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         if (responseData['success'] == true) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString("auth_token", responseData['token'] ?? "");
-
+          await prefs.setString("auth_token", responseData['auth_token'] ?? "");
+          print(responseData['auth_token']);
           // Show success message
           snackbarWidget('Login Successfull', context, Colors.green);
 
