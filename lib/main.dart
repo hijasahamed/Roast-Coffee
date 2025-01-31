@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/login_screen_controller.dart';
@@ -27,6 +28,11 @@ class RoastCoffeeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+    ));
     return MaterialApp(
       title: 'Roast Coffee',
       debugShowCheckedModeBanner: false,
@@ -41,7 +47,7 @@ class RoastCoffeeApp extends StatelessWidget {
           case '/login':
             return MaterialPageRoute(builder: (context) => LoginScreen(screenSize: screenSize));
           case '/home':
-            return MaterialPageRoute(builder: (context) => HomeScreen());
+            return MaterialPageRoute(builder: (context) => HomeScreen(screenSize: screenSize,));
           default:
             return MaterialPageRoute(builder: (context) => UnKnownRouteScreen());
         }

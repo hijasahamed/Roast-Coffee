@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/login_screen_controller.dart';
-import 'package:roast_coffee/view/widgets/login_widgets/login_button_widget.dart';
-import 'package:roast_coffee/view/widgets/login_widgets/login_head_widget.dart';
-import 'package:roast_coffee/view/widgets/login_widgets/textform_widget.dart';
+import 'package:roast_coffee/view/widgets/login_screen_widgets/login_button_widget.dart';
+import 'package:roast_coffee/view/widgets/login_screen_widgets/login_head_widget.dart';
+import 'package:roast_coffee/view/widgets/login_screen_widgets/textform_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key,required this.screenSize});
