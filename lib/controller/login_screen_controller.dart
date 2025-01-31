@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:roast_coffee/controller/splash_screen_controller.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/snackbar_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
     
@@ -44,11 +45,11 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString("auth_token", responseData['auth_token'] ?? "");
-          await prefs.setBool('Userlogedin',true);
+          await prefs.setBool(logedInKey,true);
           snackbarWidget('Login Successfull', context, Colors.green);
 
           // Navigate to Home Screen
-          // Navigator.pushReplacementNamed(context, "/home");
+          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
 
       } else {
         // Server error
