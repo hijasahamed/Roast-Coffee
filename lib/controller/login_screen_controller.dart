@@ -22,8 +22,7 @@ class LoginProvider extends ChangeNotifier {
     }
 
     final String url = dotenv.env['LOGIN_API'].toString();
-    // final String url = 'https://mt.diodeinfosolutions.com/api/login';
-    // final Map<String, String> headers = {"Content-Type": "application/json"};
+    final Map<String, String> headers = {"Content-Type": "application/json"};
 
     final Map<String, String> body = {
       "username": usernameController.text.trim(),
@@ -36,29 +35,24 @@ class LoginProvider extends ChangeNotifier {
 
       final response = await http.post(
         Uri.parse(url),
-        // headers: headers,
+        headers: headers,
         body: jsonEncode(body),
       );
 
       final responseData = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
-        if (responseData['success'] == true) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString("auth_token", responseData['auth_token'] ?? "");
           print(responseData['auth_token']);
-          // Show success message
           snackbarWidget('Login Successfull', context, Colors.green);
 
           // Navigate to Home Screen
           // Navigator.pushReplacementNamed(context, "/home");
-        } else {
-          // API responded but login failed
-          snackbarWidget('Login Failed', context, Colors.red);
-        }
+
       } else {
         // Server error
-        snackbarWidget("Server error: ${response.statusCode}", context, Colors.red);
+        snackbarWidget("Login Failed: ${response.statusCode}", context, Colors.red);
       }
     } catch (e) {
       snackbarWidget("Something went wrong: $e", context, Colors.red);

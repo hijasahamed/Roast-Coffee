@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
         ),
         SizedBox(height: 8),
         TextFormField(
+          controller: controller,
           cursorColor: Colors.white,
           validator: (value) =>
           value!.isEmpty ? "Data cannot be empty" : null,
