@@ -21,9 +21,9 @@ class LoginProvider extends ChangeNotifier {
       return;
     }
 
-    // final String url = dotenv.env['LOGIN_API'].toString();
-    final String url = 'https://mt.diodeinfosolutions.com/api/login';
-    final Map<String, String> headers = {"Content-Type": "application/json"};
+    final String url = dotenv.env['LOGIN_API'].toString();
+    // final String url = 'https://mt.diodeinfosolutions.com/api/login';
+    // final Map<String, String> headers = {"Content-Type": "application/json"};
 
     final Map<String, String> body = {
       "username": usernameController.text.trim(),
@@ -36,7 +36,7 @@ class LoginProvider extends ChangeNotifier {
 
       final response = await http.post(
         Uri.parse(url),
-        headers: headers,
+        // headers: headers,
         body: jsonEncode(body),
       );
 
