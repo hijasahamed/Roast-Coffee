@@ -3,7 +3,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/login_screen_controller.dart';
 import 'package:roast_coffee/controller/splash_screen_controller.dart';
+import 'package:roast_coffee/view/screens/home_screen.dart';
+import 'package:roast_coffee/view/screens/login_screen.dart';
 import 'package:roast_coffee/view/screens/splash_screen.dart';
+import 'package:roast_coffee/view/screens/unknown_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
@@ -30,7 +33,19 @@ class RoastCoffeeApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: SplashScreen(screenSize: screenSize,),
+      initialRoute: '/',
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(builder: (context) => SplashScreen(screenSize: screenSize));
+          case '/login':
+            return MaterialPageRoute(builder: (context) => LoginScreen(screenSize: screenSize));
+          case '/home':
+            return MaterialPageRoute(builder: (context) => HomeScreen());
+          default:
+            return MaterialPageRoute(builder: (context) => UnKnownRouteScreen());
+        }
+      },
     );
   }
 }

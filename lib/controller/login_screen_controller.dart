@@ -44,7 +44,7 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString("auth_token", responseData['auth_token'] ?? "");
-          print(responseData['auth_token']);
+          await prefs.setBool('Userlogedin',true);
           snackbarWidget('Login Successfull', context, Colors.green);
 
           // Navigate to Home Screen
