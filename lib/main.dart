@@ -15,9 +15,9 @@ void main() async {
   await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent, // Make it transparent
-    statusBarIconBrightness: Brightness.light, // White icons
-    statusBarBrightness: Brightness.dark, // For iOS
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.light,
   ));
   runApp(
     MultiProvider(

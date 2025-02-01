@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:roast_coffee/view/widgets/profile_screen_widgets/details_holder_widget.dart';
 import 'package:roast_coffee/view/widgets/profile_screen_widgets/details_list.dart';
 import 'package:roast_coffee/view/widgets/profile_screen_widgets/profile_app_bar_widget.dart';
@@ -14,6 +15,11 @@ class ProfileScreen extends StatelessWidget {
       extendBodyBehindAppBar: false,
       appBar: AppBar(
         toolbarHeight: screenSize.height/4,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.white, 
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.light,
+        ),
         flexibleSpace: ProfileAppbarWidget(screenSize: screenSize),
       ),
       body: Container(
