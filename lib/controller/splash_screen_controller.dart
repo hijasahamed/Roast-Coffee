@@ -12,7 +12,7 @@ class SplashProvider extends ChangeNotifier {
     final isLogedin = sharedPref.getBool(logedInKey);
     
     if (isLogedin == true) {
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, '/bottomnav', (route) => false);
     } else {
       Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
     }

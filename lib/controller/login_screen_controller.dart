@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -45,11 +46,12 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString("auth_token", responseData['auth_token'] ?? "");
+          log(responseData['auth_token']);
           await prefs.setBool(logedInKey,true);
           snackbarWidget('Login Successfull', context, Colors.green);
 
           // Navigate to Home Screen
-          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+          Navigator.pushNamedAndRemoveUntil(context, '/bottomnav', (route) => false);
 
       } else {
         // Server error
