@@ -86,9 +86,9 @@ class HomeScreen extends StatelessWidget {
                     viewportFraction: 0.6,
                   ),
                   items: [
-                    'assets/images/splash icon.png',
-                    'assets/images/splash icon.png',
-                    'assets/images/splash icon.png'
+                    'assets/images/image 8.png',
+                    'assets/images/image 11.png',
+                    'assets/images/image 12.png'
                   ].map((imagePath) {
                     return Builder(
                       builder: (BuildContext context) {
@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                               image: AssetImage(imagePath),
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         );
