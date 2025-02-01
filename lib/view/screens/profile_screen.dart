@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:roast_coffee/model/details_list_model.dart';
 import 'package:roast_coffee/view/widgets/profile_screen_widgets/details_holder_widget.dart';
-import 'package:roast_coffee/view/widgets/profile_screen_widgets/details_list.dart';
 import 'package:roast_coffee/view/widgets/profile_screen_widgets/profile_app_bar_widget.dart';
 import 'package:roast_coffee/view/widgets/profile_screen_widgets/wallet_address_widget.dart';
 

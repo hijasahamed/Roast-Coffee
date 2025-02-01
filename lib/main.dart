@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/bottom_nav_controller.dart';
+import 'package:roast_coffee/controller/home_screen_controller.dart';
 import 'package:roast_coffee/controller/login_screen_controller.dart';
 import 'package:roast_coffee/controller/splash_screen_controller.dart';
 import 'package:roast_coffee/view/screens/bottom_nav_screen.dart';
@@ -25,6 +26,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => SplashProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => BottomNavProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
       ],
       child: const RoastCoffeeApp(),
     ),
