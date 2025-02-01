@@ -50,7 +50,6 @@ class LoginProvider extends ChangeNotifier {
           await prefs.setBool(logedInKey,true);
           snackbarWidget('Login Successfull', context, Colors.green);
 
-          // Navigate to Home Screen
           Navigator.pushNamedAndRemoveUntil(context, '/bottomnav', (route) => false);
 
       } else {

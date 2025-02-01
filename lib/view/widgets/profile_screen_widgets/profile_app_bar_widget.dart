@@ -48,7 +48,7 @@ class ProfileAppbarWidget extends StatelessWidget {
                 OrderRewardTile(
                   icon: 'assets/images/tabler-icon-wallet.png',
                   title: "Total Orders",
-                  value: '552',
+                  value: '56',
                   screenSize: screenSize,
                 ),
                 Container(
@@ -59,7 +59,7 @@ class ProfileAppbarWidget extends StatelessWidget {
                 OrderRewardTile(
                   icon: 'assets/images/tabler-icon-award w.png',
                   title: "Reward Points",
-                  value: '585',
+                  value: '128',
                   screenSize: screenSize,
                 ),
               ],

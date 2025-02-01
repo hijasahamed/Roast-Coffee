@@ -38,7 +38,7 @@ class WalletAddressWidget extends StatelessWidget {
                 TextWidget(
                   text: title,
                   color: Color(0XFF356B69),
-                  size: screenSize.width * 0.036,
+                  size: screenSize.width * 0.038,
                   weight: FontWeight.w500,
                 ),
                 SizedBox(height: screenSize.height * 0.003),
