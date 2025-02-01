@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roast_coffee/view/screens/home_screen.dart';
 import 'package:roast_coffee/view/screens/profile_screen.dart';
+import 'package:roast_coffee/view/screens/reward_screen.dart';
 
 class BottomNavProvider extends ChangeNotifier {
   int _currentIndex = 0;
@@ -21,7 +22,7 @@ class BottomNavProvider extends ChangeNotifier {
       case 2:
         return Center(child: Text("Favorite Screen"));
       case 3:
-        return Center(child: Text("Rewards Screen"));
+        return RewardScreen(screenSize: screenSize);
       case 4:
         return ProfileScreen(screenSize: screenSize);
       default:
