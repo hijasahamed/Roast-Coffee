@@ -13,6 +13,12 @@ import 'package:roast_coffee/view/screens/unknown_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent, // Make it transparent
+    statusBarIconBrightness: Brightness.light, // White icons
+    statusBarBrightness: Brightness.dark, // For iOS
+  ));
   runApp(
     MultiProvider(
       providers: [
@@ -31,11 +37,6 @@ class RoastCoffeeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.light,
-    ));
     return MaterialApp(
       title: 'Roast Coffee',
       debugShowCheckedModeBanner: false,
