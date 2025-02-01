@@ -21,8 +21,8 @@ class LoginHeadWidget extends StatelessWidget {
             width: screenSize.width/4.97,
             child: Image.asset('assets/images/login logo.png',fit: BoxFit.cover,)
           ),
-          TextWidget(text: 'Login to your account', color: Colors.white, size: screenSize.width/19.5, fontFamily: 'Inter', weight: FontWeight.w800),
-          TextWidget(text: 'Enter your details to login', color: Colors.white, size: screenSize.width/30, fontFamily: 'Inter', weight: FontWeight.w500),
+          TextWidget(text: 'Login to your account', color: Colors.white, size: screenSize.width/19.5, weight: FontWeight.w800),
+          TextWidget(text: 'Enter your details to login', color: Colors.white, size: screenSize.width/30, weight: FontWeight.w500),
         ],
       ),
     );

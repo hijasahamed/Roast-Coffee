@@ -28,7 +28,7 @@ class LoginButtonWidget extends StatelessWidget {
             ),
             child: Center(
               child: loginProvider.isLoading==true? CircularProgressIndicator(color: Colors.white,strokeWidth: 2,)
-              : TextWidget(text: 'LOGIN', color: Colors.white, size: screenSize.width/25, fontFamily: 'Inter', weight: FontWeight.bold)
+              : TextWidget(text: 'LOGIN', color: Colors.white, size: screenSize.width/25, weight: FontWeight.bold)
             ),
           ),
         );

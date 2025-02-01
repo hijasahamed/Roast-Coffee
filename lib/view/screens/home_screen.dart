@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: screenSize.width/1.8,
-                            child: TextWidget(text: 'What are you craving today?', color: Colors.white, size: screenSize.width/20, fontFamily: '', weight: FontWeight.w600,maxline: true,)
+                            child: TextWidget(text: 'What are you craving today?', color: Colors.white, size: screenSize.width/20, weight: FontWeight.w600,maxline: true,)
                           ),
                           SizedBox(width: screenSize.width/3.6,),
                           Image.asset('assets/images/settings icon.png',fit: BoxFit.cover,height: screenSize.width/15,width: screenSize.width/15,)
