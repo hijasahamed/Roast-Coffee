@@ -1,7 +1,6 @@
-import 'package:carousel_slider/carousel_options.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
+import 'package:roast_coffee/view/widgets/home_screen_widget/appbar_carosal_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key,required this.screenSize});
@@ -9,110 +8,44 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0XFFF5F5F5),
       extendBodyBehindAppBar: true,
       body: Column(
         children: [         
-          Stack(
-            children: [
-              Container(
-                color: Color(0XFFF5F5F5),
-                height: screenSize.height/2.8,
-              ),
-              Container(
-                height: screenSize.height/3.5,
-                decoration: BoxDecoration(
-                  color: Color(0XFF356B69),
-                  image: DecorationImage(image: AssetImage('assets/images/transparent frame.png'),fit: BoxFit.cover)
-                ),
-              ),
-              Positioned(
-                top: screenSize.height/30,
-                child: Padding(
-                  padding: EdgeInsets.all(screenSize.width/25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: screenSize.width/49,
+          AppbarCarosalContentWidget(screenSize: screenSize),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.all(screenSize.width/25),
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: screenSize.width/1.8,
-                            child: TextWidget(text: 'What are you craving today?', color: Colors.white, size: screenSize.width/20, weight: FontWeight.w600,maxline: true,)
-                          ),
-                          SizedBox(width: screenSize.width/3.6,),
-                          Image.asset('assets/images/settings icon.png',fit: BoxFit.cover,height: screenSize.width/15,width: screenSize.width/15,)
-                        ],
-                      ),
-                      Row(
-                        spacing: screenSize.width/45,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/tabler-icon-current-location.png',fit: BoxFit.cover,height: screenSize.width/20,width: screenSize.width/20,),
-                          TextWidget(text: ' 19290  Al Fateh Grand Mosque Road, Bahrain', color: Colors.white, size: screenSize.width/32, weight: FontWeight.w600,maxline: true,),
-                          Image.asset('assets/images/tabler-icon-circle-chevron-down.png',fit: BoxFit.cover,height: screenSize.width/20,width: screenSize.width/20,),
-                        ],
-                      ),
+                      TextWidget(text: 'Trending', color: Color(0XFF356B69), size: screenSize.width/20, weight: FontWeight.w600),
+                      SizedBox(width: screenSize.width/55,),
                       Container(
-                        height: screenSize.height/17,
-                        width: screenSize.width/1.1,
-                        padding: EdgeInsets.only(left: screenSize.width/30,right: screenSize.width/30),
+                        height: screenSize.width/18.5,
+                        width: screenSize.width/12.5,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(screenSize.width/50)
+                          borderRadius: BorderRadius.circular(screenSize.width/50),
+                          color: Color(0XFFCEAC6D)
                         ),
+                        child: Center(child: TextWidget(text: '16', color: Color(0XFFFFFFFF), size: screenSize.width/32, weight: FontWeight.w600)),
+                      ),
+                      Spacer(),
+                      SizedBox(
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          spacing: screenSize.width/55,
                           children: [
-                            TextWidget(text: 'What are you looking for ?', color: Color(0XFF6E8382), size: screenSize.width/26, weight: FontWeight.w500,maxline: true,),
-                            Image.asset('assets/images/tabler-icon-adjustments-horizontal.png',fit: BoxFit.cover,height: screenSize.width/18,width: screenSize.width/18,),
+                            TextWidget(text: 'View all', color: Color(0XFF356B69), size: screenSize.width/30, weight: FontWeight.w600),
+                            Icon(Icons.arrow_forward_ios,color: Color(0XFF356B69),size: screenSize.width/37,)
                           ],
                         ),
                       )
                     ],
                   ),
-                ),
+                  
+                ],
               ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    height: screenSize.height/8,
-                    autoPlay: true,
-                    enlargeCenterPage: false,
-                    aspectRatio: 16 / 4,
-                    viewportFraction: 0.6,
-                  ),
-                  items: [
-                    'assets/images/image 8.png',
-                    'assets/images/image 11.png',
-                    'assets/images/image 12.png'
-                  ].map((imagePath) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          width: screenSize.width * 0.8,
-                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: AssetImage(imagePath),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }).toList(),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Container(
-              color: Colors.green,
             ),
           )
         ],
