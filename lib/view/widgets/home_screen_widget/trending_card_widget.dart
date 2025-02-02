@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/home_screen_controller.dart';
+import 'package:roast_coffee/view/widgets/skeloton_widget/skeloton_widget.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
 import 'package:roast_coffee/view/widgets/home_screen_widget/product_card_widget.dart';
 
@@ -51,9 +52,16 @@ class TrendingCardWidget extends StatelessWidget {
             future: productProvider.fetchProducts(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
+                return Expanded(
+                  child: Row(
+                    children: [
+                      ProductCardSkeleton(screenSize: screenSize),
+                      ProductCardSkeleton(screenSize: screenSize),
+                    ],
+                  ),
+                );
               } else if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
+                return Center(child: TextWidget(text: 'Error: ${snapshot.error}', color: Colors.red, size: screenSize.width/35, weight: FontWeight.w400,maxline: true,alignTextCenter: true,));
               }                    
               return Consumer<HomeProvider>(
                 builder: (context, provider, child) {

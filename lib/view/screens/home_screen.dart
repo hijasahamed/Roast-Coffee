@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/home_screen_controller.dart';
 import 'package:roast_coffee/view/widgets/home_screen_widget/appbar_carosal_widget.dart';
+import 'package:roast_coffee/view/widgets/home_screen_widget/circlular_menu_widget.dart';
 import 'package:roast_coffee/view/widgets/home_screen_widget/trending_card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,9 +17,11 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [         
           AppbarCarosalContentWidget(screenSize: screenSize),
-          TrendingCardWidget(screenSize: screenSize, productProvider: productProvider)
+          TrendingCardWidget(screenSize: screenSize, productProvider: productProvider),
+          ProductCircularMenu(screenSize: screenSize, productProvider: productProvider),
         ],
       )
     );
   }
 }
+

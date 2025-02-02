@@ -32,10 +32,10 @@ class HomeProvider extends ChangeNotifier{
         _products = jsonData.map((item) => Product.fromJson(item)).toList();
         notifyListeners();
       } else {
-        throw Exception("Failed to load products ok");
+        throw Exception("Failed to load products");
       }
     } catch (error) {
-      throw Exception("Error fetching products hijas: $error");
+      throw Exception("Error fetching products: $error");
     }
   }
 }
