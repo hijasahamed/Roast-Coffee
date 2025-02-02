@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/home_screen_controller.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
 import 'package:roast_coffee/view/widgets/home_screen_widget/product_circle_card_widget.dart';
+import 'package:roast_coffee/view/widgets/skeloton_widget/circular_card_shimmer.dart';
 
 class ProductCircularMenu extends StatelessWidget {
   const ProductCircularMenu({
@@ -25,7 +26,7 @@ class ProductCircularMenu extends StatelessWidget {
         future: productProvider.fetchProducts(),
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
-            return CircularProgressIndicator();
+            return CircularCardShimmer(screenSize: screenSize);
           }else if (snapshot.hasError){
             return Center(child: TextWidget(text: 'Error: ${snapshot.error}', color: Colors.red, size: screenSize.width/35, weight: FontWeight.w400,maxline: true,alignTextCenter: true,));
           }

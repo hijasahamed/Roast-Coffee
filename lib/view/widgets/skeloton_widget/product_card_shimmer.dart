@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-// Skeloton shimmer screens widgets
 
 class ProductCardSkeleton extends StatelessWidget {
   final Size screenSize;

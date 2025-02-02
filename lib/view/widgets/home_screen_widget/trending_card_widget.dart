@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/home_screen_controller.dart';
-import 'package:roast_coffee/view/widgets/skeloton_widget/skeloton_widget.dart';
+import 'package:roast_coffee/view/widgets/skeloton_widget/product_card_shimmer.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
 import 'package:roast_coffee/view/widgets/home_screen_widget/product_card_widget.dart';
 
