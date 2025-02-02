@@ -11,6 +11,7 @@ import 'package:roast_coffee/view/screens/bottom_nav_screen.dart';
 import 'package:roast_coffee/view/screens/login_screen.dart';
 import 'package:roast_coffee/view/screens/splash_screen.dart';
 import 'package:roast_coffee/view/screens/unknown_screen.dart';
+import 'package:roast_coffee/view/screens/view_all_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
@@ -55,6 +56,8 @@ class RoastCoffeeApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => LoginScreen(screenSize: screenSize));
           case '/bottomnav':
             return MaterialPageRoute(builder: (context) => BottomNavScreen(screenSize: screenSize,));
+          case '/viewAll':
+            return MaterialPageRoute(builder: (context) => ViewAllScreen(screenSize: screenSize,));
           default:
             return MaterialPageRoute(builder: (context) => UnKnownRouteScreen());
         }

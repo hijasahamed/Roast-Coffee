@@ -42,6 +42,7 @@ class ProductCircleCard extends StatelessWidget {
                         ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
                         : null,
                     strokeWidth: 2,
+                    color: const Color.fromARGB(255, 247, 247, 247),
                   ),
                 ),
               );

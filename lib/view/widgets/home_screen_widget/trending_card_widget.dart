@@ -37,13 +37,18 @@ class TrendingCardWidget extends StatelessWidget {
                 child: Center(child: TextWidget(text: '16', color: Color(0XFFFFFFFF), size: screenSize.width/32, weight: FontWeight.w600)),
               ),
               Spacer(),
-              SizedBox(
-                child: Row(
-                  spacing: screenSize.width/55,
-                  children: [
-                    TextWidget(text: 'View all', color: Color(0XFF356B69), size: screenSize.width/30, weight: FontWeight.w600),
-                    Icon(Icons.arrow_forward_ios,color: Color(0XFF356B69),size: screenSize.width/37,)
-                  ],
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/viewAll');
+                },
+                child: SizedBox(
+                  child: Row(
+                    spacing: screenSize.width/55,
+                    children: [
+                      TextWidget(text: 'View all', color: Color(0XFF356B69), size: screenSize.width/30, weight: FontWeight.w600),
+                      Icon(Icons.arrow_forward_ios,color: Color(0XFF356B69),size: screenSize.width/37,)
+                    ],
+                  ),
                 ),
               )
             ],
@@ -80,6 +85,7 @@ class TrendingCardWidget extends StatelessWidget {
                             imageUrl: provider.products[11].imageUrl,
                             ratingCount: provider.products[11].ratingCount,
                             makingTime: provider.products[11].makingTime,
+                            isFlex: true,
                           ),
                           
                           ProductCard(
@@ -91,6 +97,7 @@ class TrendingCardWidget extends StatelessWidget {
                             imageUrl: provider.products[1].imageUrl,
                             ratingCount: provider.products[1].ratingCount,
                             makingTime: provider.products[1].makingTime,
+                            isFlex: true,
                           ),
                         ],
                       ),

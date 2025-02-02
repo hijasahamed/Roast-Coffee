@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
+import 'package:roast_coffee/view/widgets/home_screen_widget/search_bar_widget.dart';
 
 class AppbarCarosalContentWidget extends StatelessWidget {
   const AppbarCarosalContentWidget({
@@ -53,22 +54,7 @@ class AppbarCarosalContentWidget extends StatelessWidget {
                     Image.asset('assets/images/tabler-icon-circle-chevron-down.png',fit: BoxFit.cover,height: screenSize.width/20,width: screenSize.width/20,),
                   ],
                 ),
-                Container(
-                  height: screenSize.height/17,
-                  width: screenSize.width/1.1,
-                  padding: EdgeInsets.only(left: screenSize.width/30,right: screenSize.width/30),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(screenSize.width/50)
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextWidget(text: 'What are you looking for ?', color: Color(0XFF6E8382), size: screenSize.width/26, weight: FontWeight.w500,maxline: true,),
-                      Image.asset('assets/images/tabler-icon-adjustments-horizontal.png',fit: BoxFit.cover,height: screenSize.width/18,width: screenSize.width/18,),
-                    ],
-                  ),
-                )
+                SearchBarWidget(screenSize: screenSize)
               ],
             ),
           ),
