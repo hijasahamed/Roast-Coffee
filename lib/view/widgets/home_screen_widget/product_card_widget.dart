@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
 
@@ -62,6 +63,28 @@ class ProductCard extends StatelessWidget {
                         color: Colors.red,
                         size: screenSize.width / 35,
                         weight: FontWeight.w400,
+                      ),
+                    );
+                  },
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+                    return Center(
+                      child: DefaultTextStyle(
+                        style: TextStyle(
+                          fontSize: screenSize.width / 30,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0XFF356B69),
+                        ),
+                        child: AnimatedTextKit(
+                          repeatForever: true,
+                          animatedTexts: [
+                            FadeAnimatedText('Loading...'),
+                            FadeAnimatedText('Please wait...'),
+                            FadeAnimatedText('Fetching data...'),
+                          ],
+                        ),
                       ),
                     );
                   },

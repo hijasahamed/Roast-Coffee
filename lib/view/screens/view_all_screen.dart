@@ -53,12 +53,12 @@ class ViewAllScreen extends StatelessWidget {
           builder: (context, provider, child) {
             return provider.products.isEmpty?
             Center(child: TextWidget(text: 'No products available', color: Color(0XFF356B69), size: screenSize.width/30, weight: FontWeight.w500))
-            :GridView.builder(
+            : GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,  
                 crossAxisSpacing: screenSize.width / 50,  
                 mainAxisSpacing: screenSize.height / 50,  
-                childAspectRatio: screenSize.width / (screenSize.height / 2.1), 
+                childAspectRatio: screenSize.width / (screenSize.height / 2.0), 
               ),
               itemCount: provider.products.length,
               itemBuilder: (context, index) {
