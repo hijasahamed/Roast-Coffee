@@ -4,15 +4,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/bottom_nav_controller.dart';
+import 'package:roast_coffee/controller/coffee_order_controller.dart';
 import 'package:roast_coffee/controller/home_screen_controller.dart';
 import 'package:roast_coffee/controller/login_screen_controller.dart';
 import 'package:roast_coffee/controller/splash_screen_controller.dart';
 import 'package:roast_coffee/view/screens/bottom_nav_screen.dart';
-import 'package:roast_coffee/view/screens/cart_screen.dart';
 import 'package:roast_coffee/view/screens/login_screen.dart';
 import 'package:roast_coffee/view/screens/splash_screen.dart';
 import 'package:roast_coffee/view/screens/unknown_screen.dart';
-import 'package:roast_coffee/view/screens/view_all_screen.dart';
+import 'package:roast_coffee/view/screens/products_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
@@ -39,6 +39,7 @@ class RoastCoffeeApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => BottomNavProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider()..fetchProducts(context)),
+        ChangeNotifierProvider(create: (_) => CoffeeOrderProvider()),
       ],
       child: MaterialApp(
         title: 'Roast Coffee',
@@ -57,9 +58,7 @@ class RoastCoffeeApp extends StatelessWidget {
             case '/bottomnav':
               return MaterialPageRoute(builder: (context) => BottomNavScreen(screenSize: screenSize,));
             case '/viewAll':
-              return MaterialPageRoute(builder: (context) => ViewAllScreen(screenSize: screenSize,));
-            case '/cart':
-              return MaterialPageRoute(builder: (context) => CartScreen(screenSize: screenSize));
+              return MaterialPageRoute(builder: (context) => ProductsScreen(screenSize: screenSize,));
             default:
               return MaterialPageRoute(builder: (context) => UnKnownRouteScreen());
           }

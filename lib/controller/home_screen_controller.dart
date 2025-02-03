@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:roast_coffee/controller/splash_screen_controller.dart';
 import 'package:roast_coffee/model/product_model.dart';
-import 'package:roast_coffee/view/widgets/common_widgets/snackbar_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeProvider extends ChangeNotifier{
@@ -33,7 +33,7 @@ class HomeProvider extends ChangeNotifier{
         final List<dynamic> jsonData = jsonDecode(response.body);
         _products = jsonData.map((item) {
           // Check if image URL is null or empty or 404
-          String imageUrl = item['imageUrl'] ?? '';
+          String imageUrl = item['image_url'] ?? '';
           if (imageUrl.isEmpty || !Uri.parse(imageUrl).isAbsolute || imageUrl.contains('404')) {
             imageUrl = "https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png";
           }
@@ -42,7 +42,9 @@ class HomeProvider extends ChangeNotifier{
         notifyListeners();
       } else if (response.statusCode == 401) {
         // Token expired, log out user
-        await logoutUser(context);
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          logoutUser(context);
+        });
       }
        else {
         throw Exception("Failed to load products");
@@ -54,9 +56,10 @@ class HomeProvider extends ChangeNotifier{
 
   Future<void> logoutUser(context) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove("auth_token"); // Remove token
-    await prefs.setBool(logedInKey, false); // Update login state
-    snackbarWidget("Session expired. Please log in again.", context, Colors.red);
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    await prefs.remove("auth_token"); 
+    await prefs.setBool(logedInKey, false); 
+    if (context.mounted) {
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    }
   }
 }
