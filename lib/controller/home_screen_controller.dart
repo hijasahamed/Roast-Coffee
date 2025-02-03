@@ -29,8 +29,16 @@ class HomeProvider extends ChangeNotifier{
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = jsonDecode(response.body);
-        _products = jsonData.map((item) => Product.fromJson(item)).toList();
+        _products = jsonData.map((item) {
+          // Check if image URL is null or empty or 404
+          String imageUrl = item['imageUrl'] ?? '';
+          if (imageUrl.isEmpty || !Uri.parse(imageUrl).isAbsolute || imageUrl.contains('404')) {
+            imageUrl = "https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png";
+          }
+          return Product.fromJson({...item, 'imageUrl': imageUrl});
+        }).toList();
         notifyListeners();
+        print(_products);
       } else {
         throw Exception("Failed to load products");
       }

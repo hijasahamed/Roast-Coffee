@@ -64,8 +64,8 @@ class ViewAllScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final product = provider.products[index];
                 return InkWell(
-                  onTap: () {
-                    
+                  onTap: (){
+                    Navigator.pushNamed(context, '/cart');
                   },
                   child: ProductCard(
                     name: product.name,

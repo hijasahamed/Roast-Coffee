@@ -57,14 +57,7 @@ class ProductCard extends StatelessWidget {
                   imageUrl,
                   fit: BoxFit.cover,
                   errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                    return Center(
-                      child: TextWidget(
-                        text: 'No image',
-                        color: Colors.red,
-                        size: screenSize.width / 35,
-                        weight: FontWeight.w400,
-                      ),
-                    );
+                    return Image.asset('assets/images/placeholder.png', fit: BoxFit.cover);
                   },
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) {

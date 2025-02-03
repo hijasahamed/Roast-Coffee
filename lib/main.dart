@@ -8,6 +8,7 @@ import 'package:roast_coffee/controller/home_screen_controller.dart';
 import 'package:roast_coffee/controller/login_screen_controller.dart';
 import 'package:roast_coffee/controller/splash_screen_controller.dart';
 import 'package:roast_coffee/view/screens/bottom_nav_screen.dart';
+import 'package:roast_coffee/view/screens/cart_screen.dart';
 import 'package:roast_coffee/view/screens/login_screen.dart';
 import 'package:roast_coffee/view/screens/splash_screen.dart';
 import 'package:roast_coffee/view/screens/unknown_screen.dart';
@@ -58,6 +59,8 @@ class RoastCoffeeApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => BottomNavScreen(screenSize: screenSize,));
           case '/viewAll':
             return MaterialPageRoute(builder: (context) => ViewAllScreen(screenSize: screenSize,));
+          case '/cart':
+            return MaterialPageRoute(builder: (context) => CartScreen(screenSize: screenSize));
           default:
             return MaterialPageRoute(builder: (context) => UnKnownRouteScreen());
         }
