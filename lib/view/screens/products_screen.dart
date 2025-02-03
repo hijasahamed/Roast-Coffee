@@ -10,7 +10,7 @@ class ProductsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0XFFFFFFFF),
-      appBar: ProductsAppbarWidget(screenSize: screenSize),
+      appBar: ProductsAppbarWidget(screenSize: screenSize,isProduct: true,title: 'Products',),
       body: ProductBodyWidget(screenSize: screenSize),
     );
   }

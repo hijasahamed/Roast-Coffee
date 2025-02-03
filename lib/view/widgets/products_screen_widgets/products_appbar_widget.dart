@@ -6,9 +6,13 @@ class ProductsAppbarWidget extends StatelessWidget implements PreferredSizeWidge
   const ProductsAppbarWidget({
     super.key,
     required this.screenSize,
+    required this.title,
+    required this.isProduct
   });
 
   final Size screenSize;
+  final String title;
+  final bool isProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +30,18 @@ class ProductsAppbarWidget extends StatelessWidget implements PreferredSizeWidge
           spacing: screenSize.width/55,
           children: [
             Padding(
-              padding: EdgeInsets.only(right: screenSize.width/25),
+              padding: EdgeInsets.only(right: screenSize.width/25,bottom: !isProduct? screenSize.width/60:0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  isProduct?
                   IconButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     }, 
                     icon: Icon(Icons.arrow_back_ios,color: Colors.white,size: screenSize.width/22,)
-                  ),
-                  TextWidget(text: 'Products', color: Colors.white, size: screenSize.width/20, weight: FontWeight.w600),
+                  ): SizedBox(width: screenSize.width/23,),
+                  TextWidget(text: title, color: Colors.white, size: screenSize.width/20, weight: FontWeight.w600),
                   Image.asset('assets/images/settings icon.png',fit: BoxFit.cover,height: screenSize.width/15,width: screenSize.width/15,)
                 ],
               ),

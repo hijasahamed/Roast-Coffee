@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roast_coffee/view/screens/home_screen.dart';
+import 'package:roast_coffee/view/screens/orders_screen.dart';
 import 'package:roast_coffee/view/screens/profile_screen.dart';
 import 'package:roast_coffee/view/screens/reward_screen.dart';
 
@@ -18,7 +19,7 @@ class BottomNavProvider extends ChangeNotifier {
       case 0:
         return HomeScreen(screenSize: screenSize);
       case 1:
-        return Center(child: Text("Order Screen"));
+        return OrdersScreen(screenSize: screenSize);
       case 2:
         return Center(child: Text("Favorite Screen"));
       case 3:

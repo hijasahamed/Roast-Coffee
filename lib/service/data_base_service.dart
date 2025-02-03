@@ -21,10 +21,10 @@ class DatabaseService {
           CREATE TABLE products (
             id INTEGER PRIMARY KEY,
             name TEXT,
-            price REAL,
+            price TEXT,
             currency TEXT,
             makingTime TEXT,
-            rating REAL,
+            rating TEXT,
             ratingCount INTEGER,
             imageUrl TEXT
           )
@@ -36,11 +36,20 @@ class DatabaseService {
 
   // Insert product into the database
   Future<void> addProduct(Product product) async {
-    final db = await database;
+    final db = await DatabaseService().database;
     await db.insert(
       'products',
-      product.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.ignore, // Avoid inserting duplicate ids
+      {
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'currency': product.currency,
+        'makingTime': product.makingTime,
+        'rating': product.rating,
+        'ratingCount': product.ratingCount,
+        'imageUrl': product.imageUrl,
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
@@ -49,7 +58,8 @@ class DatabaseService {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query('products');
     return List.generate(maps.length, (i) {
-      return Product.fromJson(maps[i]);
+      final product = Product.fromJson(maps[i]);
+      return product;
     });
   }
 
