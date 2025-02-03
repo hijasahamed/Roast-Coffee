@@ -12,131 +12,139 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CoffeeOrderProvider>(context);
-    return Scaffold(
-      backgroundColor: Color(0XFFF5F5F5),
-      appBar: CartAppbarWidget(screenSize: screenSize, product: product),
-      body: Stack(
-        children: [
-          Container(
-            color: Color(0XFFFFFFFF),
-            child: Column(
-              children: [
-                Image.network(
-                  product.imageUrl,
-                  fit: BoxFit.cover,
-                  height: screenSize.height / 4,
-                  width: screenSize.width,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-
-                    return Container(
-                      height: screenSize.height / 3.8,
-                      width: screenSize.width,
-                      color: Colors.grey[300],
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.blueGrey,
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  (loadingProgress.expectedTotalBytes ?? 1)
-                              : null,
-                        ),
-                      ),
-                    );
-                  },
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      height: screenSize.height / 3.8,
-                      width: screenSize.width,
-                      color: Colors.grey[300],
-                      child: Image.asset(
-                        'assets/images/placeholder.png',
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(height: screenSize.height / 125),
-                Flexible(
-                  child: Container(
-                    padding: EdgeInsets.all(screenSize.width/20),
+    return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) {
+          Provider.of<CoffeeOrderProvider>(context, listen: false).resetCount();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Color(0XFFF5F5F5),
+        appBar: CartAppbarWidget(screenSize: screenSize, product: product),
+        body: Stack(
+          children: [
+            Container(
+              color: Color(0XFFFFFFFF),
+              child: Column(
+                children: [
+                  Image.network(
+                    product.imageUrl,
+                    fit: BoxFit.cover,
+                    height: screenSize.height / 4,
                     width: screenSize.width,
-                    color: Color(0XFF356B69),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: screenSize.width/15),
-                        _buildSectionTitle("Cup size"),
-                        _buildCups(),
-                        SizedBox(height: screenSize.width/55),
-                        _buildSizeOptions(provider),
-                        SizedBox(height: screenSize.width/25),
-                        Divider(color: Color(0XFFFFFFFF),thickness: .25,),
-                        SizedBox(height: screenSize.width/55),
-                        _buildSectionTitle("Milk options"),
-                        SizedBox(height: screenSize.width/55),
-                        _buildMilkOptions(provider),
-                        SizedBox(height: screenSize.width/25),
-                        Divider(color: Color(0XFFFFFFFF),thickness: .25,),
-                        SizedBox(height: screenSize.width/55),
-                        _buildSectionTitle("Count"),
-                        _buildCounter(provider),
-                        SizedBox(height: screenSize.width/10),
-                        CartAddButton(product: product,screenSize: screenSize,)
-                      ],
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+      
+                      return Container(
+                        height: screenSize.height / 3.8,
+                        width: screenSize.width,
+                        color: Colors.grey[300],
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.blueGrey,
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    (loadingProgress.expectedTotalBytes ?? 1)
+                                : null,
+                          ),
+                        ),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        height: screenSize.height / 3.8,
+                        width: screenSize.width,
+                        color: Colors.grey[300],
+                        child: Image.asset(
+                          'assets/images/placeholder.png',
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(height: screenSize.height / 125),
+                  Flexible(
+                    child: Container(
+                      padding: EdgeInsets.all(screenSize.width/20),
+                      width: screenSize.width,
+                      color: Color(0XFF356B69),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: screenSize.width/15),
+                          _buildSectionTitle("Cup size"),
+                          _buildCups(),
+                          SizedBox(height: screenSize.width/55),
+                          _buildSizeOptions(provider),
+                          SizedBox(height: screenSize.width/25),
+                          Divider(color: Color(0XFFFFFFFF),thickness: .25,),
+                          SizedBox(height: screenSize.width/55),
+                          _buildSectionTitle("Milk options"),
+                          SizedBox(height: screenSize.width/55),
+                          _buildMilkOptions(provider),
+                          SizedBox(height: screenSize.width/25),
+                          Divider(color: Color(0XFFFFFFFF),thickness: .25,),
+                          SizedBox(height: screenSize.width/55),
+                          _buildSectionTitle("Count"),
+                          _buildCounter(provider),
+                          SizedBox(height: screenSize.width/10),
+                          CartAddButton(product: product,screenSize: screenSize,provider: provider,)
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Positioned( 
-            top: screenSize.width/2.25,
-            left: screenSize.width / 28,
-            right: screenSize.width / 28,
-            child: Container(
-              height: screenSize.height / 8.9,
-              width: screenSize.width * 0.9,
-              padding: EdgeInsets.only(left: screenSize.width/22,right: screenSize.width/22,top: screenSize.width/35,bottom: screenSize.width/35),
-              decoration: BoxDecoration(
-                color: Color(0XFFFFFFFF),
-                borderRadius: BorderRadius.circular(screenSize.width / 40),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                spacing: screenSize.width/75,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget(text: product.name, color: Color(0XFF356B69), size: screenSize.width/25, weight: FontWeight.w600),
-                      Spacer(), 
-                      Icon(Icons.favorite_border,color: Color(0XFF6E8382),)
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/tabler-icon-star-filled.png',
-                        height: screenSize.width / 30,
-                        width: screenSize.width / 30,
-                      ),
-                      SizedBox(width: screenSize.width / 70),
-                      TextWidget(text: '${product.rating}', color: Color(0XFF6E8382), size: screenSize.width / 35, weight: FontWeight.w500),
-                      SizedBox(width: screenSize.width / 150),
-                      TextWidget(text: '(${product.ratingCount.toString()})', color: Color(0XFF6E8382), size: screenSize.width / 35, weight: FontWeight.w500),
-                      SizedBox(width: screenSize.width / 3.7),
-                      TextWidget(text: product.makingTime, color: Color(0XFF6E8382), size: screenSize.width / 35, weight: FontWeight.w500),
-                    ],
-                  ),
-                  TextWidget(text: '${product.currency} ${product.price}', color: Color(0XFFCEAC6D), size: screenSize.width / 30, weight: FontWeight.w600),
                 ],
               ),
             ),
-          ),
-        ],
-      )
+            Positioned( 
+              top: screenSize.width/2.25,
+              left: screenSize.width / 28,
+              right: screenSize.width / 28,
+              child: Container(
+                height: screenSize.height / 8.9,
+                width: screenSize.width * 0.9,
+                padding: EdgeInsets.only(left: screenSize.width/22,right: screenSize.width/22,top: screenSize.width/35,bottom: screenSize.width/35),
+                decoration: BoxDecoration(
+                  color: Color(0XFFFFFFFF),
+                  borderRadius: BorderRadius.circular(screenSize.width / 40),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  spacing: screenSize.width/75,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextWidget(text: product.name, color: Color(0XFF356B69), size: screenSize.width/25, weight: FontWeight.w600),
+                        Spacer(), 
+                        Icon(Icons.favorite_border,color: Color(0XFF6E8382),)
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Image.asset(
+                          'assets/images/tabler-icon-star-filled.png',
+                          height: screenSize.width / 30,
+                          width: screenSize.width / 30,
+                        ),
+                        SizedBox(width: screenSize.width / 70),
+                        TextWidget(text: '${product.rating}', color: Color(0XFF6E8382), size: screenSize.width / 35, weight: FontWeight.w500),
+                        SizedBox(width: screenSize.width / 150),
+                        TextWidget(text: '(${product.ratingCount.toString()})', color: Color(0XFF6E8382), size: screenSize.width / 35, weight: FontWeight.w500),
+                        SizedBox(width: screenSize.width / 3.7),
+                        TextWidget(text: product.makingTime, color: Color(0XFF6E8382), size: screenSize.width / 35, weight: FontWeight.w500),
+                      ],
+                    ),
+                    TextWidget(text: '${product.currency} ${product.price}', color: Color(0XFFCEAC6D), size: screenSize.width / 30, weight: FontWeight.w600),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        )
+      ),
     );
   }
 

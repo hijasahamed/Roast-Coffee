@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:roast_coffee/controller/coffee_order_controller.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
 
 class CartAddButton extends StatelessWidget {
   final Size screenSize;
   final dynamic product;
+  final CoffeeOrderProvider provider;
 
   const CartAddButton({
     super.key,
     required this.screenSize,
     required this.product,
+    required this.provider
   });
 
   @override
@@ -17,6 +20,7 @@ class CartAddButton extends StatelessWidget {
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(screenSize.width / 10),
       child: InkWell(
+        borderRadius: BorderRadius.circular(screenSize.width / 10),
         onTap: () {
           
         },
@@ -43,7 +47,7 @@ class CartAddButton extends StatelessWidget {
                 color: Colors.white,
               ),
               TextWidget(
-                text: '${product.currency} ${product.price}',
+                text: '${product.currency} ${product.price * provider.count}',
                 color: Colors.white,
                 size: screenSize.width / 23,
                 weight: FontWeight.w600,

@@ -30,4 +30,9 @@ class CoffeeOrderProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void resetCount() {
+    _count = 1;  
+    notifyListeners();
+  }
 }
