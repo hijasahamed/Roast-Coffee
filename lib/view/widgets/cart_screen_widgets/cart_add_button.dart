@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:roast_coffee/controller/cart_screen_controller.dart';
 import 'package:roast_coffee/controller/coffee_order_controller.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
 
@@ -16,13 +18,14 @@ class CartAddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
     return Material(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(screenSize.width / 10),
       child: InkWell(
         borderRadius: BorderRadius.circular(screenSize.width / 10),
         onTap: () {
-          
+          cartProvider.cartButtonClicked(context, product);
         },
         child: Ink(
           width: screenSize.width / 1.1,

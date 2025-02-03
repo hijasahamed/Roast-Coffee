@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:roast_coffee/controller/bottom_nav_controller.dart';
+import 'package:roast_coffee/controller/cart_screen_controller.dart';
 import 'package:roast_coffee/controller/coffee_order_controller.dart';
 import 'package:roast_coffee/controller/home_screen_controller.dart';
 import 'package:roast_coffee/controller/login_screen_controller.dart';
@@ -40,6 +41,7 @@ class RoastCoffeeApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => BottomNavProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider()..fetchProducts(context)),
         ChangeNotifierProvider(create: (_) => CoffeeOrderProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: MaterialApp(
         title: 'Roast Coffee',

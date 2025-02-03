@@ -16,7 +16,8 @@ class CartScreen extends StatelessWidget {
       canPop: true,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) {
-          Provider.of<CoffeeOrderProvider>(context, listen: false).resetCount();
+          // Provider.of<CoffeeOrderProvider>(context, listen: false).resetCount();
+          provider.resetCount();
         }
       },
       child: Scaffold(
