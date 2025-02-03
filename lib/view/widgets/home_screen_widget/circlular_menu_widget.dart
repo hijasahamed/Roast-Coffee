@@ -23,7 +23,7 @@ class ProductCircularMenu extends StatelessWidget {
       margin: EdgeInsets.only(top: screenSize.width/100),
       color: Color(0XFFFFFFFF),
       child: FutureBuilder(
-        future: productProvider.fetchProducts(),
+        future: Future.delayed(Duration(milliseconds: 1200)),
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
             return CircularCardShimmer(screenSize: screenSize);
@@ -33,7 +33,7 @@ class ProductCircularMenu extends StatelessWidget {
           return Consumer<HomeProvider>(
             builder: (context, provider, child) {
               return provider.products.isEmpty
-              ? Center(child: TextWidget(text: 'No products available', color: Color(0XFF356B69), size: screenSize.width/30, weight: FontWeight.w500))
+              ? CircularCardShimmer(screenSize: screenSize)
               : Column(
                 spacing: screenSize.width/25,
                 children: [

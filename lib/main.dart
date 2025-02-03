@@ -23,15 +23,7 @@ void main() async {
     statusBarBrightness: Brightness.light,
   ));
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => SplashProvider()),
-        ChangeNotifierProvider(create: (_) => LoginProvider()),
-        ChangeNotifierProvider(create: (_) => BottomNavProvider()),
-        ChangeNotifierProvider(create: (_) => HomeProvider()),
-      ],
-      child: const RoastCoffeeApp(),
-    ),
+    const RoastCoffeeApp(),
   );
 }
 
@@ -41,30 +33,38 @@ class RoastCoffeeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
-    return MaterialApp(
-      title: 'Roast Coffee',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.outfitTextTheme(),
-        primarySwatch: Colors.deepPurple,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SplashProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => BottomNavProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()..fetchProducts(context)),
+      ],
+      child: MaterialApp(
+        title: 'Roast Coffee',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: GoogleFonts.outfitTextTheme(),
+          primarySwatch: Colors.deepPurple,
+        ),
+        initialRoute: '/',
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/':
+              return MaterialPageRoute(builder: (context) => SplashScreen(screenSize: screenSize));          
+            case '/login':
+              return MaterialPageRoute(builder: (context) => LoginScreen(screenSize: screenSize));
+            case '/bottomnav':
+              return MaterialPageRoute(builder: (context) => BottomNavScreen(screenSize: screenSize,));
+            case '/viewAll':
+              return MaterialPageRoute(builder: (context) => ViewAllScreen(screenSize: screenSize,));
+            case '/cart':
+              return MaterialPageRoute(builder: (context) => CartScreen(screenSize: screenSize));
+            default:
+              return MaterialPageRoute(builder: (context) => UnKnownRouteScreen());
+          }
+        },
       ),
-      initialRoute: '/',
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case '/':
-            return MaterialPageRoute(builder: (context) => SplashScreen(screenSize: screenSize));          
-          case '/login':
-            return MaterialPageRoute(builder: (context) => LoginScreen(screenSize: screenSize));
-          case '/bottomnav':
-            return MaterialPageRoute(builder: (context) => BottomNavScreen(screenSize: screenSize,));
-          case '/viewAll':
-            return MaterialPageRoute(builder: (context) => ViewAllScreen(screenSize: screenSize,));
-          case '/cart':
-            return MaterialPageRoute(builder: (context) => CartScreen(screenSize: screenSize));
-          default:
-            return MaterialPageRoute(builder: (context) => UnKnownRouteScreen());
-        }
-      },
     );
   }
 }

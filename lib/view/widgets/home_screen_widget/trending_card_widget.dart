@@ -54,7 +54,7 @@ class TrendingCardWidget extends StatelessWidget {
             ],
           ),
           FutureBuilder(
-            future: productProvider.fetchProducts(),
+            future: Future.delayed(Duration(milliseconds: 1200)),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Expanded(
@@ -71,7 +71,14 @@ class TrendingCardWidget extends StatelessWidget {
               return Consumer<HomeProvider>(
                 builder: (context, provider, child) {
                   return provider.products.isEmpty
-                  ? Center(child: TextWidget(text: 'No products available', color: Color(0XFF356B69), size: screenSize.width/30, weight: FontWeight.w500))
+                  ? Expanded(
+                    child: Row(
+                      children: [
+                        ProductCardSkeleton(screenSize: screenSize),
+                        ProductCardSkeleton(screenSize: screenSize),
+                      ],
+                    ),
+                  )
                   : Expanded(
                       child: Row(
                         children: [
