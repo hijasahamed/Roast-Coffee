@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:roast_coffee/controller/splash_screen_controller.dart';
@@ -32,7 +31,7 @@ class HomeProvider extends ChangeNotifier{
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = jsonDecode(response.body);
         _products = jsonData.map((item) {
-          // Check if image URL is null or empty or 404
+          // Check if image URL is null or empty
           String imageUrl = item['image_url'] ?? '';
           if (imageUrl.isEmpty || !Uri.parse(imageUrl).isAbsolute || imageUrl.contains('404')) {
             imageUrl = "https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png";
@@ -40,11 +39,6 @@ class HomeProvider extends ChangeNotifier{
           return Product.fromJson({...item, 'imageUrl': imageUrl});
         }).toList();
         notifyListeners();
-      } else if (response.statusCode == 401) {
-        // Token expired, log out user
-        SchedulerBinding.instance.addPostFrameCallback((_) {
-          logoutUser(context);
-        });
       }
        else {
         throw Exception("Failed to load products");

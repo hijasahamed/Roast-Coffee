@@ -25,6 +25,8 @@ class CartScreen extends StatelessWidget {
         body: Stack(
           children: [
             Container(
+              height: screenSize.height,
+              width: screenSize.width,
               color: Color(0XFFFFFFFF),
               child: Column(
                 children: [
@@ -53,7 +55,7 @@ class CartScreen extends StatelessWidget {
                     },
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
-                        height: screenSize.height / 3.8,
+                        height: screenSize.height / 4,
                         width: screenSize.width,
                         color: Colors.grey[300],
                         child: Image.asset(
@@ -64,34 +66,32 @@ class CartScreen extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: screenSize.height / 125),
-                  Flexible(
-                    child: Container(
-                      padding: EdgeInsets.all(screenSize.width/20),
-                      width: screenSize.width,
-                      color: Color(0XFF356B69),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: screenSize.width/15),
-                          _buildSectionTitle("Cup size"),
-                          _buildCups(),
-                          SizedBox(height: screenSize.width/55),
-                          _buildSizeOptions(provider),
-                          SizedBox(height: screenSize.width/25),
-                          Divider(color: Color(0XFFFFFFFF),thickness: .25,),
-                          SizedBox(height: screenSize.width/55),
-                          _buildSectionTitle("Milk options"),
-                          SizedBox(height: screenSize.width/55),
-                          _buildMilkOptions(provider),
-                          SizedBox(height: screenSize.width/25),
-                          Divider(color: Color(0XFFFFFFFF),thickness: .25,),
-                          SizedBox(height: screenSize.width/55),
-                          _buildSectionTitle("Count"),
-                          _buildCounter(provider),
-                          SizedBox(height: screenSize.width/10),
-                          CartAddButton(product: product,screenSize: screenSize,provider: provider,)
-                        ],
-                      ),
+                  Container(
+                    padding: EdgeInsets.all(screenSize.width/20),
+                    width: screenSize.width,
+                    color: Color(0XFF356B69),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: screenSize.width/10),
+                        _buildSectionTitle("Cup size"),
+                        _buildCups(),
+                        SizedBox(height: screenSize.width/55),
+                        _buildSizeOptions(provider),
+                        SizedBox(height: screenSize.width/25),
+                        Divider(color: Color(0XFFFFFFFF),thickness: .25,),
+                        SizedBox(height: screenSize.width/55),
+                        _buildSectionTitle("Milk options"),
+                        SizedBox(height: screenSize.width/55),
+                        _buildMilkOptions(provider),
+                        SizedBox(height: screenSize.width/25),
+                        Divider(color: Color(0XFFFFFFFF),thickness: .25,),
+                        SizedBox(height: screenSize.width/55),
+                        _buildSectionTitle("Count"),
+                        _buildCounter(provider),
+                        SizedBox(height: screenSize.width/10),
+                        CartAddButton(product: product,screenSize: screenSize,provider: provider,)
+                      ],
                     ),
                   ),
                 ],
