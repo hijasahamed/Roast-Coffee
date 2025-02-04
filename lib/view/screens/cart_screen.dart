@@ -16,7 +16,6 @@ class CartScreen extends StatelessWidget {
       canPop: true,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) {
-          // Provider.of<CoffeeOrderProvider>(context, listen: false).resetCount();
           provider.resetCount();
         }
       },
@@ -154,11 +153,15 @@ class CartScreen extends StatelessWidget {
       spacing: screenSize.width/20,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset('assets/images/tabler-icon-cup.png',height: screenSize.width/9,width: screenSize.width/9,),
-        Image.asset('assets/images/tabler-icon-cup.png',height: screenSize.width/9,width: screenSize.width/9,),
-        Image.asset('assets/images/tabler-icon-cup.png',height: screenSize.width/9,width: screenSize.width/9,),
+        _cupImageBuilder(),
+        _cupImageBuilder(),
+        _cupImageBuilder(),
       ],
     );
+  }
+
+  Image _cupImageBuilder() {
+    return Image.asset('assets/images/tabler-icon-cup.png',height: screenSize.width/9,width: screenSize.width/9,);
   }
 
 
