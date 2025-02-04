@@ -40,7 +40,7 @@ class RewardBodyContentWidget extends StatelessWidget {
               
           // Image
           Image.asset(
-            'assets/images/reward box.png',
+            'assets/animation/20250204_120513.gif',
             width: screenSize.width * 0.6,
             height: screenSize.width * 0.4,
           ),
