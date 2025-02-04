@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
     
 
 class LoginProvider extends ChangeNotifier {
+  
   final TextEditingController usernameController = TextEditingController(); 
   final TextEditingController passwordController = TextEditingController(); 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -47,8 +48,9 @@ class LoginProvider extends ChangeNotifier {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString("auth_token", responseData['auth_token'] ?? "");
           final authToken = prefs.getString("auth_token") ?? "";
-          log(responseData['auth_token']);
           log(authToken);
+          usernameController.clear();
+          passwordController.clear();
           await prefs.setBool(logedInKey,true);
           snackbarWidget('Login Successfull', context, Colors.green);
 

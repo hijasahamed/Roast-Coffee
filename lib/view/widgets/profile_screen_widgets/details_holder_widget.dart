@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:roast_coffee/controller/bottom_nav_controller.dart';
 import 'package:roast_coffee/controller/home_screen_controller.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
 import 'package:roast_coffee/view/widgets/profile_screen_widgets/login_approval_dialog.dart';
@@ -13,9 +14,10 @@ class DetailsHolderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeProvider = Provider.of<HomeProvider>(context);
+    final bottomNavProvider = Provider.of<BottomNavProvider>(context);
     return InkWell(
       onTap: () {
-        showLogoutDialog(context, screenSize,homeProvider);
+        showLogoutDialog(context, screenSize,homeProvider,bottomNavProvider);
       },
       child: Column(
         spacing: screenSize.width/75,

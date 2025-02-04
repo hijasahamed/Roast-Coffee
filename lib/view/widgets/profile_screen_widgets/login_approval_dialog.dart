@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:roast_coffee/controller/bottom_nav_controller.dart';
 import 'package:roast_coffee/controller/home_screen_controller.dart';
 import 'package:roast_coffee/view/widgets/common_widgets/text_widget.dart';
 
-void showLogoutDialog(BuildContext context, Size screenSize, HomeProvider homeProvider) {
+void showLogoutDialog(BuildContext context, Size screenSize, HomeProvider homeProvider, BottomNavProvider bottomNavProvider) {
   showDialog(
     context: context,
     builder: (context) {
@@ -57,8 +58,9 @@ void showLogoutDialog(BuildContext context, Size screenSize, HomeProvider homePr
                   // Logout Button
                   Expanded(
                     child: InkWell(
-                      onTap: () {
-                        homeProvider.logoutUser(context);
+                      onTap: () async{
+                        await homeProvider.logoutUser(context);
+                        bottomNavProvider.setIndex(0);
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: screenSize.width / 30),
