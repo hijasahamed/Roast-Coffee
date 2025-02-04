@@ -1,39 +1,3 @@
-// class Product {
-//   final int id;
-//   final String name;
-//   final double price;
-//   final String currency;
-//   final String makingTime;
-//   final double rating;
-//   final int ratingCount;
-//   final String imageUrl;
-
-//   Product({
-//     required this.id,
-//     required this.name,
-//     required this.price,
-//     required this.currency,
-//     required this.makingTime,
-//     required this.rating,
-//     required this.ratingCount,
-//     required this.imageUrl,
-//   });
-
-//   factory Product.fromJson(Map<String, dynamic> json) {
-//     return Product(
-//       id: json['id'],
-//       name: json['name'],
-//       price: json['price'].toDouble(),
-//       currency: json['currency'],
-//       makingTime: json['making_time'],
-//       rating: json['rating'].toDouble(),
-//       ratingCount: json['rating_count'],
-//       imageUrl: json['image_url'],
-//     );
-//   }
-// }
-
-
 class Product {
   final int id;
   final String name;
@@ -43,6 +7,7 @@ class Product {
   final double rating;
   final int ratingCount;
   final String imageUrl;
+  final String orderDateTime;
 
   Product({
     required this.id,
@@ -53,6 +18,7 @@ class Product {
     required this.rating,
     required this.ratingCount,
     required this.imageUrl,
+    required this.orderDateTime,
   });
 
   // Convert Product to a Map for SQLite
@@ -66,6 +32,7 @@ class Product {
       'rating': rating,
       'ratingCount': ratingCount,
       'imageUrl': imageUrl,
+      'orderDateTime': orderDateTime,
     };
   }
 
@@ -80,6 +47,7 @@ class Product {
       rating: double.tryParse(json['rating'].toString()) ?? 0.0,
       ratingCount: json['rating_count'] ?? 0,
       imageUrl: json['imageUrl'] ?? '',
+      orderDateTime: json['orderDateTime'] ?? '',
     );
   }
 }

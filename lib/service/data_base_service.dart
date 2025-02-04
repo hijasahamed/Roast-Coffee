@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:roast_coffee/model/product_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -26,7 +27,8 @@ class DatabaseService {
             makingTime TEXT,
             rating TEXT,
             ratingCount INTEGER,
-            imageUrl TEXT
+            imageUrl TEXT,
+            orderDateTime TEXT
           )
         ''');
       },
@@ -37,6 +39,7 @@ class DatabaseService {
   // Insert product into the database
   Future<void> addProduct(Product product) async {
     final db = await DatabaseService().database;
+    final String currentDateTime = DateFormat('dd-MM-yyyy | hh:mm a').format(DateTime.now());
     await db.insert(
       'products',
       {
@@ -48,6 +51,7 @@ class DatabaseService {
         'rating': product.rating,
         'ratingCount': product.ratingCount,
         'imageUrl': product.imageUrl,
+        'orderDateTime': currentDateTime,
       },
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
