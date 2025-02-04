@@ -17,7 +17,6 @@ import 'package:roast_coffee/view/screens/products_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
-  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.light,
@@ -50,7 +49,7 @@ class RoastCoffeeApp extends StatelessWidget {
           textTheme: GoogleFonts.outfitTextTheme(),
           primarySwatch: Colors.deepPurple,
         ),
-        initialRoute: '/',
+        home: SplashScreen(screenSize: screenSize),
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/':

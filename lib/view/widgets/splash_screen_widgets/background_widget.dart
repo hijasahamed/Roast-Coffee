@@ -10,11 +10,15 @@ class BackgroundWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/images/splash screen.png',
-      fit: BoxFit.cover,
+    return SizedBox(
       width: screenSize.width,
       height: screenSize.height,
+      child: Image.asset(
+        'assets/images/splash screen.png',
+        fit: BoxFit.cover,
+        width: screenSize.width,
+        height: screenSize.height,
+      ),
     );
   }
 }

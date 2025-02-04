@@ -37,9 +37,8 @@ class CartScreen extends StatelessWidget {
                     width: screenSize.width,
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress == null) return child;
-      
                       return Container(
-                        height: screenSize.height / 3.8,
+                        height: screenSize.height / 4,
                         width: screenSize.width,
                         color: Colors.grey[300],
                         child: Center(

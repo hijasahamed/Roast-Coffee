@@ -25,7 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         children: [
           BackgroundWidget(screenSize: widget.screenSize,),
-          LogoWidget(screenSize: widget.screenSize,)
+          LogoWidget(screenSize: widget.screenSize,),
+          Text('splash screen',style: TextStyle(color: Colors.white),)
         ],
       ),
     );

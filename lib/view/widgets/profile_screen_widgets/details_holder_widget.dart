@@ -17,7 +17,7 @@ class DetailsHolderWidget extends StatelessWidget {
     final bottomNavProvider = Provider.of<BottomNavProvider>(context);
     return InkWell(
       onTap: () {
-        showLogoutDialog(context, screenSize,homeProvider,bottomNavProvider);
+       isLogout==true?  showLogoutDialog(context, screenSize,homeProvider,bottomNavProvider): null;
       },
       child: Column(
         spacing: screenSize.width/75,
